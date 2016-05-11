@@ -22,19 +22,17 @@ if __name__ == '__main__':
 	else:
 		out = sys.argv[2]
 	fp2=open(out,'w')
-	num = 0
-	for line in fp1:
-		num += 1
-	fp1.seek(0,0)
-	randarry=[-1] * num
-	for i in range(num):
-		index = random.randint(0,num-1)	
-		while index in randarry:
-			index = random.randint(0,num-1)	
-		randarry[i] = index
 	list_of_all_lines = fp1.readlines()
+	num = len(list_of_all_lines)
+	randarry=[0] * num
+	for i in range(num):
+		index = random.randint(1,num)	
+		while index in randarry:
+			index = random.randint(1,num)	
+		randarry[i] = index
+	
 	fp1.close()
 	for i in range(num):
-		fp2.write(list_of_all_lines[randarry[i]])
+		fp2.write(list_of_all_lines[randarry[i]-1])
 	fp2.close()
 	
